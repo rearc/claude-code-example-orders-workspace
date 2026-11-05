@@ -1,0 +1,8 @@
+{
+  "folders": [
+    { "name": "orders-workspace", "path": "." },
+    { "name": "orders-api", "path": "repos/orders-api" },
+    { "name": "orders-web", "path": "repos/orders-web" }
+  ],
+  "settings": {}
+}

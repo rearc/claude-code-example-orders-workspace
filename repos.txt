@@ -1,0 +1,2 @@
+orders-api https://github.com/rearc/claude-code-example-orders-api
+orders-web https://github.com/rearc/claude-code-example-orders-web
