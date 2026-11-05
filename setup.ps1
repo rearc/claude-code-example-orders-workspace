@@ -9,6 +9,7 @@ foreach ($line in Get-Content repos.txt) {
   if (-not (Test-Path "repos\$name")) { git clone -q $url "repos\$name" }
   Write-Host "repo:   $name"
 }
+$mine = (Get-Content .claude\settings.json -Raw | ConvertFrom-Json).enabledPlugins
 $dirs = @(Get-Item .) + @(Get-ChildItem repos -Directory)
 foreach ($d in $dirs) {
   $s = Join-Path $d.FullName ".claude\settings.json"
@@ -25,7 +26,12 @@ foreach ($d in $dirs) {
   }
   if ($cfg.enabledPlugins) {
     foreach ($p in $cfg.enabledPlugins.PSObject.Properties) {
-      if ($p.Value) { claude plugin install $p.Name --scope project *> $null; Write-Host "plugin: $($p.Name) for $($d.Name)" }
+      if ($p.Value) {
+        claude plugin install $p.Name --scope project *> $null; Write-Host "plugin: $($p.Name) for $($d.Name)"
+        if ($d.FullName -ne (Get-Item .).FullName -and -not ($mine -and $mine.($p.Name))) {
+          Write-Host "note:   $($d.Name) turns on $($p.Name); this workspace doesn't, so it won't load here"
+        }
+      }
     }
   }
   Pop-Location

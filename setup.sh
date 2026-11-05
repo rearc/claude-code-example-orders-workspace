@@ -11,6 +11,7 @@ while read -r name url; do
 done < repos.txt
 python3 - <<'PY'
 import json, pathlib, subprocess
+mine = json.loads(pathlib.Path(".claude/settings.json").read_text()).get("enabledPlugins", {})
 for d in [pathlib.Path(".")] + sorted(p for p in pathlib.Path("repos").iterdir() if p.is_dir()):
     s = d / ".claude" / "settings.json"
     if not s.exists():
@@ -25,5 +26,7 @@ for d in [pathlib.Path(".")] + sorted(p for p in pathlib.Path("repos").iterdir()
         if on:
             r = subprocess.run(["claude", "plugin", "install", pid, "--scope", "project"], cwd=d, capture_output=True, text=True)
             print(f"plugin: {pid} for {d}: {'installed' if r.returncode == 0 else r.stderr.strip()[:200]}")
+            if d != pathlib.Path(".") and not mine.get(pid):
+                print(f"note:   {d.name} turns on {pid}; this workspace doesn't, so it won't load here")
 PY
 echo "Done. VS Code: open orders.code-workspace. CLI: ./start.sh"

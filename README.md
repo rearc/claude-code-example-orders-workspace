@@ -10,11 +10,18 @@ ones included), skills, subagents and plugins, and they apply as Claude works in
 repos' own settings files don't apply here, so anything they enforce that must hold here is restated
 in this workspace's settings.
 
+That includes plugins. The workspace turns on, in its own settings, the plugins it wants in this
+session (here, the ones both repos use). A repo turning a plugin on isn't enough when Claude
+starts here: Claude loads a team-marketplace plugin only if it's installed for the folder it
+started in. Listing them here also makes the choice deliberate, and leaves each repo's own setup
+alone for when you work in that repo by itself. `setup.sh` warns if a repo turns on a plugin this
+workspace doesn't.
+
 | File | Purpose |
 |---|---|
 | `CLAUDE.md` | How the repos fit together, and the order of work |
 | `.claude/skills/change-api-contract/` | The cross-repo procedure |
-| `.claude/settings.json` | Governs the session (here: the repos' deny rules, restated) |
+| `.claude/settings.json` | Governs the session: the repos' deny rules restated, and the plugins this workspace turns on |
 | `repos.txt` | The repos and their URLs |
 | `setup.sh`, `setup.ps1` | Clone the repos into `repos/`, install the plugins they turn on |
 | `start.sh`, `start.ps1` | Start Claude here with each repo added (CLI) |

@@ -13,5 +13,5 @@ and plugins; follow them inside that repo. This file covers only how the repos f
 3. One branch and one PR per repo, each naming the other PR. Merge orders-api first.
 
 ## In this workspace
-- These settings govern the session; the repos' own settings don't. The repos' deny rules are restated here.
+- These settings govern the session; the repos' own settings don't. The repos' deny rules and plugins are restated here.
 - Run each repo's commands from inside that repo (`cd repos/<repo>`).
