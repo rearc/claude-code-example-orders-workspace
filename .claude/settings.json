@@ -1,5 +1,8 @@
 {
   "permissions": {
-    "deny": ["Read(./repos/**/.env)", "Read(./repos/**/.env.*)"]
+    "deny": [
+      "Read(./repos/**/.env)",
+      "Read(./repos/**/.env.*)"
+    ]
   }
 }
