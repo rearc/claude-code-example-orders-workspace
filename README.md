@@ -1,8 +1,9 @@
 # claude-code-example-orders-workspace
 
 A **workspace package**: work on orders-api and orders-web together in one Claude Code session.
-Part of the [claude-code-example-team-setup](https://github.com/rearc/claude-code-example-team-setup)
-example, which explains when to use this and when to work in each repo on its own (the default).
+Part of a four-repo example of a team Claude Code setup, with
+[orders-api](https://github.com/rearc/claude-code-example-orders-api), [orders-web](https://github.com/rearc/claude-code-example-orders-web) and [marketplace](https://github.com/rearc/claude-code-example-marketplace). Working in each repo on its own is the default;
+use this package when one change spans both repos.
 
 This folder is the agent you act as. Its `CLAUDE.md` holds cross-repo guidance and its
 `.claude/settings.json` governs the session. Each repo keeps its own CLAUDE.md, rules (path-scoped
